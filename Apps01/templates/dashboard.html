@@ -1,0 +1,125 @@
+<!-- templates/dashboard.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - IS-386</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <i class="fas fa-lightbulb"></i>
+            <span>IS-386 Dashboard</span>
+        </div>
+        <div class="navbar-user">
+            <span>Bienvenido, <strong>{{ user.username }}</strong></span>
+            <a href="{% url 'logout' %}" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </a>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <ul class="menu">
+                <li class="menu-item active">
+                    <a href="#">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        <span>Mi Perfil</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Estadísticas</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="welcome-card">
+                <h1><i class="fas fa-hand-wave"></i> ¡Hola, {{ user.username }}!</h1>
+                <p>Bienvenido al sistema de innovación IS-386</p>
+                <div class="stats">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Usuario desde</h3>
+                        <p>{{ user.date_joined|date:"d/m/Y" }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>{{ user.email }}</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user-check"></i>
+                        <h3>Estado</h3>
+                        <p>Activo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mensajes -->
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    <i class="fas fa-{% if message.tags == 'error' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %}"></i>
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Contenido adicional -->
+            <div class="content-grid">
+                <div class="card">
+                    <h3><i class="fas fa-tasks"></i> Mis Proyectos</h3>
+                    <p>Gestiona tus proyectos de innovación</p>
+                    <button class="btn-primary">Ver Proyectos</button>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-file-alt"></i> Documentos</h3>
+                    <p>Accede a tus documentos y reportes</p>
+                    <button class="btn-primary">Ver Documentos</button>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-calendar-alt"></i> Calendario</h3>
+                    <p>Revisa tus actividades programadas</p>
+                    <button class="btn-primary">Ver Calendario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cerrar mensajes automáticamente
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 300);
+            });
+        }, 5000);
+    </script>
+</body>
+</html>

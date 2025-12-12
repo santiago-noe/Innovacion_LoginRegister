@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta - Innovación IS-386</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+    <!-- Fondo animado -->
+    <div class="background-animation">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+    
+    <div class="auth-container">
+        <!-- Header -->
+        <div class="auth-header">
+            <h1 class="auth-title">Crear Cuenta</h1>
+            <p class="auth-subtitle">Únete a nuestra plataforma de innovación</p>
+        </div>
+        
+        <!-- Mensajes de Django -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <i class="fas fa-{% if message.tags == 'error' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %}"></i>
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- Formulario -->
+        <form method="POST" class="auth-form" id="registerForm">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label class="form-label" for="username">
+                    <i class="fas fa-user"></i> Nombre de Usuario
+                </label>
+                <div class="input-with-icon">
+                    <input type="text" name="username" id="username" class="form-input" 
+                           placeholder="Ingresa tu nombre de usuario" required
+                           minlength="3" maxlength="30">
+                    <span class="input-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </span>
+                </div>
+    
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="email">
+                    <i class="fas fa-envelope"></i> Correo Electrónico
+                </label>
+                <div class="input-with-icon">
+                    <input type="email" name="email" id="email" class="form-input" 
+                           placeholder="ejemplo@correo.com" required>
+                    <span class="input-icon">
+                        <i class="fas fa-at"></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="password">
+                    <i class="fas fa-lock"></i> Contraseña
+                </label>
+                <div class="input-with-icon">
+                    <input type="password" name="password" id="password" class="form-input" 
+                           placeholder="Crea una contraseña segura" required
+                           minlength="8">
+                    <button type="button" class="password-toggle" id="togglePassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <span class="input-icon">
+                        <i class="fas fa-key"></i>
+                    </span>
+                </div>
+                <div class="password-strength">
+                    <div class="strength-meter">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>     
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="confirmPassword">
+                    <i class="fas fa-lock"></i> Confirmar Contraseña
+                </label>
+                <div class="input-with-icon">
+                    <input type="password" name="confirmPassword" id="confirmPassword" class="form-input" 
+                           placeholder="Repite tu contraseña" required>
+                    <button type="button" class="password-toggle" id="toggleConfirmPassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <span class="input-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </span>
+                </div>
+                <small class="form-hint" id="passwordMatch"></small>
+            </div>
+        
+            
+            <button type="submit" class="auth-button">
+                <i class="fas fa-user-plus"></i> Crear Cuenta
+            </button>
+        </form>
+        
+        
+        <!-- Link a Login -->
+        <div class="auth-links">
+            ¿Ya tienes una cuenta?
+            <a href="{% url 'signin' %}">Inicia sesión aquí</a>
+        </div>
+    </div>
+    
+    <script>
+        // Toggle para mostrar/ocultar contraseña
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+        
+        // Toggle para confirmar contraseña
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+            const confirmInput = document.getElementById('confirmPassword');
+            const icon = this.querySelector('i');
+            
+            if (confirmInput.type === 'password') {
+                confirmInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                confirmInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+        
+        // Validación de fortaleza de contraseña
+        const passwordInput = document.getElementById('password');
+        const strengthFill = document.getElementById('strengthFill');
+        const strengthText = document.getElementById('strengthText');
+        const confirmInput = document.getElementById('confirmPassword');
+        const passwordMatch = document.getElementById('passwordMatch');
+        
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+            
+            // Verificar longitud
+            if (password.length >= 8) strength += 25;
+            if (password.length >= 12) strength += 10;
+            
+            // Verificar caracteres
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/[a-z]/.test(password)) strength += 10;
+            if (/[0-9]/.test(password)) strength += 25;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 15;
+            
+            // Actualizar barra de progreso
+            strengthFill.style.width = `${Math.min(strength, 100)}%`;
+            
+            // Actualizar texto
+            if (strength < 30) {
+                strengthFill.style.backgroundColor = '#ef4444';
+                strengthText.textContent = 'Seguridad: débil';
+                strengthText.style.color = '#ef4444';
+            } else if (strength < 70) {
+                strengthFill.style.backgroundColor = '#f59e0b';
+                strengthText.textContent = 'Seguridad: regular';
+                strengthText.style.color = '#f59e0b';
+            } else {
+                strengthFill.style.backgroundColor = '#10b981';
+                strengthText.textContent = 'Seguridad: fuerte';
+                strengthText.style.color = '#10b981';
+            }
+        });
+        
+        // Verificar coincidencia de contraseñas
+        confirmInput.addEventListener('input', function() {
+            if (passwordInput.value !== this.value) {
+                passwordMatch.textContent = '⚠️ Las contraseñas no coinciden';
+                passwordMatch.style.color = '#ef4444';
+            } else {
+                passwordMatch.textContent = '✓ Las contraseñas coinciden';
+                passwordMatch.style.color = '#10b981';
+            }
+        });
+        
+        // Validación del formulario antes de enviar
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            if (passwordInput.value !== confirmInput.value) {
+                e.preventDefault();
+                passwordMatch.textContent = '⚠️ Las contraseñas deben coincidir';
+                passwordMatch.style.color = '#ef4444';
+                confirmInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>

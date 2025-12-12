@@ -1,0 +1,349 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovación IS-386 | Sistema de Gestión</title>
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Vinculación CSS -->
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+    <!-- Fondo animado -->
+    <div class="background-animation">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+    </div>
+    
+    <!-- Header/Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-lightbulb"></i>
+                <span>NOE SANTIAGO</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#features"><i class="fas fa-star"></i> Características</a>
+                <a href="#about"><i class="fas fa-info-circle"></i> Acerca de</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="highlight">Innovación</span> 
+                    <span class="subtitle">IS-386</span>
+                </h1>
+                <p class="hero-description">
+                    Plataforma integral para la gestión de proyectos innovadores. 
+                    Colabora, gestiona y transforma tus ideas en realidad.
+                </p>
+                
+                <div class="cta-buttons">
+                    <a href="{% url 'register' %}" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Crear Cuenta Gratis
+                    </a>
+                    <a href="{% url 'signin' %}" class="btn btn-secondary">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h3>500+</h3>
+                            <p>Usuarios Activos</p>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-project-diagram"></i>
+                        <div>
+                            <h3>150+</h3>
+                            <p>Proyectos Activos</p>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <h3>95%</h3>
+                            <p>Satisfacción</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div class="image-container">
+                    <div class="floating-card card-1">
+                        <i class="fas fa-chart-bar"></i>
+                        <h4>Análisis</h4>
+                        <p>Métricas en tiempo real</p>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-tasks"></i>
+                        <h4>Gestión</h4>
+                        <p>Organización de proyectos</p>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i class="fas fa-comments"></i>
+                        <h4>Colaboración</h4>
+                        <p>Trabajo en equipo</p>
+                    </div>
+                    <div class="main-illustration">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2>Características Principales</h2>
+            <p>Descubre todo lo que nuestra plataforma puede ofrecerte</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Gestión de Ideas</h3>
+                <p>Captura, organiza y desarrolla ideas innovadoras en un solo lugar.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+                <h3>Colaboración en Equipo</h3>
+                <p>Trabaja simultáneamente con tu equipo en tiempo real.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h3>Análisis Avanzado</h3>
+                <p>Obtén insights valiosos con nuestros dashboards interactivos.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Seguridad Total</h3>
+                <p>Tus datos están protegidos con encriptación de nivel empresarial.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Acceso Móvil</h3>
+                <p>Accede desde cualquier dispositivo, en cualquier momento.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Almacenamiento Cloud</h3>
+                <p>Guarda todos tus archivos de forma segura en la nube.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>¿Por qué elegir IS-386?</h2>
+                <p>IS-386 es más que una plataforma, es un ecosistema diseñado para potenciar la innovación en tu organización.</p>
+                
+                <ul class="benefits-list">
+                    <li><i class="fas fa-check-circle"></i> Interfaz intuitiva y fácil de usar</li>
+                    <li><i class="fas fa-check-circle"></i> Integración con herramientas populares</li>
+                    <li><i class="fas fa-check-circle"></i> Soporte técnico 24/7</li>
+                    <li><i class="fas fa-check-circle"></i> Actualizaciones constantes</li>
+                    <li><i class="fas fa-check-circle"></i> Planes flexibles para cada necesidad</li>
+                </ul>
+                
+                <a href="{% url 'register' %}" class="btn btn-outline">
+                    <i class="fas fa-play-circle"></i> Comenzar Ahora
+                </a>
+            </div>
+            
+            <div class="about-image">
+                <div class="dashboard-preview">
+                    <div class="dashboard-header">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="chart"></div>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-number">+45%</span>
+                                <span class="stat-label">Productividad</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">-30%</span>
+                                <span class="stat-label">Tiempo gestión</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>¡Comienza tu viaje de innovación hoy!</h2>
+            <p>Únete a cientos de organizaciones que ya están transformando sus ideas en realidad.</p>
+            
+            <div class="cta-buttons">
+                <a href="{% url 'register' %}" class="btn btn-primary btn-large">
+                    <i class="fas fa-rocket"></i> Registrarse Gratis
+                </a>
+                <a href="{% url 'signin' %}" class="btn btn-secondary btn-large">
+                    <i class="fas fa-sign-in-alt"></i> Acceder a Mi Cuenta
+                </a>
+            </div>
+            
+            <p class="cta-note">
+                <i class="fas fa-clock"></i> Registro rápido - Solo 2 minutos
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>IS-386</span>
+                </div>
+                <p class="footer-description">
+                    Plataforma de gestión de innovación para proyectos académicos y empresariales.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="{% url 'register' %}">Registrarse</a></li>
+                    <li><a href="{% url 'signin' %}">Iniciar Sesión</a></li>
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#about">Acerca de</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="#">Documentación</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Tutoriales</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-envelope"></i> soporte@is386.edu</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Universidad Nacional</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Innovación IS-386. Todos los derechos reservados.</p>
+            <p>Desarrollado con <i class="fas fa-heart"></i> para la comunidad académica</p>
+        </div>
+    </footer>
+
+    <!-- Script para animaciones -->
+    <script>
+        // Animación de entrada suave
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación de elementos al hacer scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observar elementos para animación
+            document.querySelectorAll('.feature-card, .stat, .floating-card').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Efecto hover en botones
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Contador animado (opcional)
+            const stats = document.querySelectorAll('.stat h3');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current) + (stat.textContent.includes('%') ? '%' : '+');
+                }, 30);
+            });
+        });
+    </script>
+</body>
+</html>
